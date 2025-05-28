@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MedStudy Assist - Professional Medical Academic Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style id="app-style">
+        :root {
+            --primary-color: #1e88e5;
+            --secondary-color: #26a69a;
+            --accent-color: #66bb6a;
+            --light-color: #e3f2fd;
+            --dark-color: #263238;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #e3f2fd 40%, #e0f2f1 70%, #e8f5e9 100%);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(30, 136, 229, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #1976d2;
+            border-color: #1976d2;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(30, 136, 229, 0.3);
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            position: relative;
+            z-index: 1;
+            color: var(--primary-color);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-icon:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px dashed var(--primary-color);
+            opacity: 0.5;
+            z-index: -1;
+        }
+        
+        .expertise-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+        
+        .expertise-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .expertise-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .pricing-calculator {
+            background-color: #f8f9fa;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .pricing-calculator:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .price-display {
+            background-color: #e3f2fd;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-item {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 1.5rem;
+        }
+        
+        .blog-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border: none;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .live-chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .live-chat-widget:hover {
+            transform: scale(1.05);
+        }
+        
+        .chat-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 450px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px;
+        }
+        
+        .chat-body {
+            height: 330px;
+            padding: 15px;
+            overflow-y: auto;
+        }
+        
+        .chat-footer {
+            padding: 10px 15px;
+            border-top: 1px solid #eee;
+            background-color: #f8f9fa;
+        }
+        
+        .badge-hipaa {
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .badge-ssl {
+            background-color: #1976d2;
+            color: white;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .form-select, .form-control {
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            border: 1px solid #ddd;
+            box-shadow: none;
+            transition: all 0.3s ease;
+        }
+        
+        .form-select:focus, .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(30, 136, 229, 0.25);
+        }
+        
+        /* Loading animation */
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-content {
+                padding: 3rem 1.5rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .step-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .chat-popup {
+                width: 300px;
+                bottom: 80px;
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="javascript:void(0)">
+                <i class="fas fa-heartbeat text-primary me-2"></i>
+                <span class="fw-bold">MedStudy Assist</span>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-primary" href="javascript:void(0)">
+                            <i class="fas fa-user-md me-1"></i> Login
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient py-5">
+        <div class="container">
+            <div class="row align-items-center py-5">
+                <div class="col-lg-8 mx-auto text-center hero-content">
+                    <h1 class="display-4 fw-bold mb-4 animate__animated animate__fadeIn">Your Time Saves Lives. Let Us Handle the Paperwork.</h1>
+                    <p class="lead mb-5 animate__animated animate__fadeIn animate__delay-1s">Focus on your clinical skills while we help with academic requirements. 100% HIPAA compliant support for medical and nursing students.</p>
+                    <button id="upload-btn" class="btn btn-primary btn-lg px-5 py-3 animate__animated animate__fadeIn animate__delay-2s">
+                        <i class="fas fa-file-upload me-2"></i>
+                        Upload Your Medical/Nursing Task Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-5">How It Works</h2>
+            
+            <div class="row g-4">
+                <!-- Step 1 -->
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-upload fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold">1. Upload Instructions</h5>
+                        <p class="text-muted">Share your assignment details and any supplementary materials securely.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-clipboard-list fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold">2. Specify Requirements</h5>
+                        <p class="text-muted">Tell us about format, references, deadlines, and any special instructions.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-lock fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold">3. Secure Payment</h5>
+                        <p class="text-muted">Make a protected payment with our SSL-encrypted payment gateway.</p>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <div class="step-icon mb-3">
+                            <i class="fas fa-file-medical-alt fa-2x"></i>
+                        </div>
+                        <h5 class="fw-bold">4. Receive Solutions</h5>
+                        <p class="text-muted">Get professionally prepared materials delivered to your account on time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Expertise -->
+    <section class="py-5 bg-light">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-5">Our Expertise</h2>
+            
+            <div class="row g-4">
+                <!-- Anatomy -->
+                <div class="col-md-6">
+                    <div class="card expertise-card">
+                        <div class="card-body p-4">
+                            <div class="expertise-icon">
+                                <i class="fas fa-lungs fa-lg"></i>
+                            </div>
+                            <h5 class="fw-bold">Anatomy & Physiology</h5>
+                            <p>Detailed anatomical analyses, physiological process explanations, and structural function relationships.</p>
+                            <div class="mt-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold"><small>Case Example:</small></h6>
+                                <p class="mb-0"><small>"Helped with a comprehensive analysis of the cardiovascular system, including detailed vessel illustrations and flow dynamics explanation." - Student, Year 2</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pharmacology -->
+                <div class="col-md-6">
+                    <div class="card expertise-card">
+                        <div class="card-body p-4">
+                            <div class="expertise-icon">
+                                <i class="fas fa-pills fa-lg"></i>
+                            </div>
+                            <h5 class="fw-bold">Pharmacology</h5>
+                            <p>Medication mechanism of action, drug interactions, pharmaceutical calculations, and administration protocols.</p>
+                            <div class="mt-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold"><small>Case Example:</small></h6>
+                                <p class="mb-0"><small>"Received support with a complex pharmacokinetics report on anti-hypertensive medications and their variable efficacy across patient demographics." - PharmD Student</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Clinical Diagnostics -->
+                <div class="col-md-6">
+                    <div class="card expertise-card">
+                        <div class="card-body p-4">
+                            <div class="expertise-icon">
+                                <i class="fas fa-stethoscope fa-lg"></i>
+                            </div>
+                            <h5 class="fw-bold">Clinical Diagnostics</h5>
+                            <p>Lab result interpretation, differential diagnosis frameworks, evidence-based practice guidelines, and case analyses.</p>
+                            <div class="mt-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold"><small>Case Example:</small></h6>
+                                <p class="mb-0"><small>"Assisted with analyzing a complex set of lab results for a geriatric patient case study with multiple comorbidities and drug interactions." - Medical Student, Year 3</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Nursing Care Plans -->
+                <div class="col-md-6">
+                    <div class="card expertise-card">
+                        <div class="card-body p-4">
+                            <div class="expertise-icon">
+                                <i class="fas fa-procedures fa-lg"></i>
+                            </div>
+                            <h5 class="fw-bold">Nursing Care Plans</h5>
+                            <p>NANDA-based care plans, intervention development, outcome measurement, and holistic care approach documentation.</p>
+                            <div class="mt-3 p-3 bg-light rounded-3">
+                                <h6 class="fw-bold"><small>Case Example:</small></h6>
+                                <p class="mb-0"><small>"Received help with creating a detailed post-surgical care plan for a pediatric patient with developmental considerations and family involvement strategies." - BSN Student</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator -->
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-5">Calculate Your Price</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="pricing-calculator p-4">
+                        <form id="price-calculator-form">
+                            <div class="row g-4 mb-4">
+                                <div class="col-md-4">
+                                    <label for="task-type" class="form-label fw-bold">Task Type</label>
+                                    <select class="form-select" id="task-type" required>
+                                        <option value="" selected disabled>Select task type</option>
+                                        <option value="lab_report">Lab Report</option>
+                                        <option value="case_study">Case Study</option>
+                                        <option value="care_plan">Nursing Care Plan</option>
+                                        <option value="research_paper">Research Paper</option>
+                                        <option value="literature_review">Literature Review</option>
+                                        <option value="thesis_chapter">Thesis Chapter</option>
+                                        <option value="presentation">Presentation</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <label for="urgency" class="form-label fw-bold">Urgency</label>
+                                    <select class="form-select" id="urgency" required>
+                                        <option value="" selected disabled>Select timeframe</option>
+                                        <option value="24h">24 Hours</option>
+                                        <option value="48h">48 Hours</option>
+                                        <option value="3d">3 Days</option>
+                                        <option value="7d">7 Days</option>
+                                        <option value="14d">14 Days</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-md-4">
+                                    <label for="word-count" class="form-label fw-bold">Word Count</label>
+                                    <select class="form-select" id="word-count" required>
+                                        <option value="" selected disabled>Select length</option>
+                                        <option value="500">500 words</option>
+                                        <option value="1000">1,000 words</option>
+                                        <option value="1500">1,500 words</option>
+                                        <option value="2000">2,000 words</option>
+                                        <option value="3000">3,000 words</option>
+                                        <option value="5000">5,000 words</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="price-display mb-4" id="price-display">
+                                <p class="mb-1 text-muted">Your estimated price:</p>
+                                <h3 class="mb-0 fw-bold" id="price-amount">$---.--</h3>
+                                <p class="mt-2 mb-0 small text-muted">Final price may vary based on specific requirements</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="button" id="get-quote-btn" class="btn btn-primary px-4 py-2">
+                                    <i class="fas fa-calculator me-2"></i>
+                                    Get Detailed Quote
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-light">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-5">What Our Students Say</h2>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Testimonial 1 -->
+                            <div class="carousel-item active">
+                                <div class="testimonial-item">
+                                    <p class="mb-3"><i class="fas fa-quote-left text-primary me-2 opacity-50"></i>The nursing care plan assistance I received was exceptional. It helped me understand how to approach complex patient scenarios and develop comprehensive care strategies.<i class="fas fa-quote-right text-primary ms-2 opacity-50"></i></p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Sarah K.</h6>
+                                            <p class="small text-muted mb-0">BSN Student, Class of 2025</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 2 -->
+                            <div class="carousel-item">
+                                <div class="testimonial-item">
+                                    <p class="mb-3"><i class="fas fa-quote-left text-primary me-2 opacity-50"></i>I was struggling to balance clinical rotations with academic writing. This service helped me organize my research for a pharmacology paper while maintaining proper citations and academic integrity.<i class="fas fa-quote-right text-primary ms-2 opacity-50"></i></p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Michael T.</h6>
+                                            <p class="small text-muted mb-0">Medical Student, Year 2</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star-half-alt"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Testimonial 3 -->
+                            <div class="carousel-item">
+                                <div class="testimonial-item">
+                                    <p class="mb-3"><i class="fas fa-quote-left text-primary me-2 opacity-50"></i>The assistance I received with my clinical diagnostics assignment was incredibly helpful. The explanations were clear and helped me improve my critical thinking skills for future patient assessments.<i class="fas fa-quote-right text-primary ms-2 opacity-50"></i></p>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <h6 class="mb-1 fw-bold">Emily R.</h6>
+                                            <p class="small text-muted mb-0">Physician Assistant Student</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                            <span class="me-1 text-warning"><i class="fas fa-star"></i></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    
+                    <div class="text-center mt-4">
+                        <span class="badge-hipaa me-2">
+                            <i class="fas fa-shield-alt me-1"></i> HIPAA Compliant
+                        </span>
+                        <span class="badge-ssl">
+                            <i class="fas fa-lock me-1"></i> SSL Secure
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Teaser -->
+    <section class="py-5 bg-white">
+        <div class="container py-4">
+            <h2 class="text-center fw-bold mb-5">Latest Resources</h2>
+            
+            <div class="row g-4">
+                <!-- Blog Post 1 -->
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/09/15/27/dna-1811955_1280.jpg" class="card-img-top" alt="Medical student studying">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Balancing Clinical Rotations and Studies</h5>
+                            <p class="card-text text-muted">Practical time management strategies for medical students juggling hands-on training and academic responsibilities.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://cdn.pixabay.com/photo/2014/12/10/20/56/medical-report-563425_1280.jpg" class="card-img-top" alt="APA Formatting">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">APA Formatting for Nursing Research</h5>
+                            <p class="card-text text-muted">A comprehensive guide to properly formatting your nursing papers according to the latest APA guidelines.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="col-md-4">
+                    <div class="card blog-card h-100">
+                        <img src="https://cdn.pixabay.com/photo/2019/06/06/16/02/technology-4256272_1280.jpg" class="card-img-top" alt="Medical Technology">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Top Medical Apps for Students in 2025</h5>
+                            <p class="card-text text-muted">Discover the latest mobile applications helping medical and nursing students excel in their clinical practice.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0">
+                            <a href="javascript:void(0)" class="btn btn-sm btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="javascript:void(0)" class="btn btn-primary px-4">
+                    <i class="fas fa-book-medical me-2"></i>
+                    Explore All Resources
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Ethics Disclaimer -->
+    <section class="py-4 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="p-3 border border-2 rounded-3">
+                        <h6 class="fw-bold mb-3">Academic Ethics Statement</h6>
+                        <p class="small text-muted mb-0">MedStudy Assist provides resources for educational purposes. Our materials are designed to help students understand complex medical and nursing concepts. We advocate for academic integrity and expect all users to adhere to their institution's honor code. Materials should be used as learning aids and reference resources, not for academic misconduct.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">MedStudy Assist</h5>
+                    <p class="text-muted mb-3">Supporting the next generation of healthcare professionals with quality academic assistance.</p>
+                    <div class="d-flex gap-3">
+                        <a href="javascript:void(0)" class="text-muted hover-text-light">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-muted hover-text-light">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-muted hover-text-light">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-muted hover-text-light">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <h6 class="fw-bold mb-3">Services</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Nursing</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Medicine</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Pharmacy</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Research</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-2">
+                    <h6 class="fw-bold mb-3">Support</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Help Center</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Contact Us</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">FAQs</a></li>
+                        <li class="mb-2"><a href="javascript:void(0)" class="text-muted text-decoration-none">Community</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-4">
+                    <h6 class="fw-bold mb-3">Newsletter</h6>
+                    <p class="text-muted mb-3">Get the latest medical education tips and resources delivered to your inbox.</p>
+                    <form class="mb-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address" aria-label="Email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-4 border-secondary">
+            
+            <div class="row align-items-center">
+                <div class="col-md-6 small text-muted">
+                    &copy; 2025 MedStudy Assist. All rights reserved.
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline small mb-0">
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)" class="text-muted text-decoration-none">Privacy Policy</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="text-muted">•</span>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)" class="text-muted text-decoration-none">Terms of Service</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <span class="text-muted">•</span>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="javascript:void(0)" class="text-muted text-decoration-none">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Widget -->
+    <div class="live-chat-widget" id="chat-widget">
+        <i class="fas fa-user-nurse fa-lg"></i>
+    </div>
+
+    <!-- Chat Popup -->
+    <div class="chat-popup shadow" id="chat-popup">
+        <div class="chat-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <i class="fas fa-user-nurse me-2"></i>
+                <span>Virtual Nurse Station</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white" id="close-chat"></button>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <div class="mb-3">
+                <div class="d-flex align-items-center mb-2">
+                    <div class="bg-primary text-white rounded-circle p-1 me-2">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <span class="small fw-bold">Nurse Amy</span>
+                </div>
+                <div class="bg-light p-3 rounded-3">
+                    <p class="mb-0">Hello! Welcome to MedStudy Assist. How can I help you with your medical or nursing assignments today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type your message..." id="chat-input">
+                <button class="btn btn-primary" type="button" id="send-chat">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- File Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Upload Your Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="upload-form">
+                        <div class="mb-3">
+                            <label for="assignment-type" class="form-label">Assignment Type</label>
+                            <select class="form-select" id="assignment-type" required>
+                                <option value="" selected disabled>Select assignment type</option>
+                                <option value="lab_report">Lab Report</option>
+                                <option value="case_study">Case Study</option>
+                                <option value="care_plan">Nursing Care Plan</option>
+                                <option value="research_paper">Research Paper</option>
+                                <option value="literature_review">Literature Review</option>
+                                <option value="thesis_chapter">Thesis Chapter</option>
+                                <option value="presentation">Presentation</option>
+                                <option value="other">Other (Please specify)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="subject-area" class="form-label">Subject Area</label>
+                            <select class="form-select" id="subject-area" required>
+                                <option value="" selected disabled>Select subject area</option>
+                                <option value="anatomy">Anatomy & Physiology</option>
+                                <option value="pharmacology">Pharmacology</option>
+                                <option value="pathophysiology">Pathophysiology</option>
+                                <option value="clinical_skills">Clinical Skills</option>
+                                <option value="nursing_fundamentals">Nursing Fundamentals</option>
+                                <option value="medical_ethics">Medical Ethics</option>
+                                <option value="healthcare_management">Healthcare Management</option>
+                                <option value="other">Other (Please specify)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label">Deadline</label>
+                            <input type="datetime-local" class="form-control" id="deadline" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="instructions" class="form-label">Detailed Instructions</label>
+                            <textarea class="form-control" id="instructions" rows="4" placeholder="Please provide as much detail as possible about your assignment requirements..." required></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="file-upload" class="form-label">Upload Files</label>
+                            <input type="file" class="form-control" id="file-upload" multiple>
+                            <div class="form-text">Upload assignment instructions, rubrics, reference materials, or any other relevant documents.</div>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="agree-terms" required>
+                            <label class="form-check-label" for="agree-terms">
+                                I agree to the <a href="javascript:void(0)">Terms of Service</a> and <a href="javascript:void(0)">Privacy Policy</a>
+                            </label>
+                        </div>
+                        
+                        <div id="upload-result" class="d-none alert mb-3"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="submit-upload">
+                        <i class="fas fa-paper-plane me-1"></i> Submit Assignment
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap, jQuery and other scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script id="app-script">
+        $(document).ready(function() {
+            // Price calculator
+            function calculatePrice() {
+                const taskType = $('#task-type').val();
+                const urgency = $('#urgency').val();
+                const wordCount = $('#word-count').val();
+                
+                if (taskType && urgency && wordCount) {
+                    let basePrice = 0;
+                    switch(taskType) {
+                        case 'lab_report': basePrice = 25; break;
+                        case 'case_study': basePrice = 30; break;
+                        case 'care_plan': basePrice = 28; break;
+                        case 'research_paper': basePrice = 35; break;
+                        case 'literature_review': basePrice = 32; break;
+                        case 'thesis_chapter': basePrice = 45; break;
+                        case 'presentation': basePrice = 30; break;
+                    }
+                    let urgencyMultiplier = 1;
+                    switch(urgency) {
+                        case '24h': urgencyMultiplier = 1.8; break;
+                        case '48h': urgencyMultiplier = 1.5; break;
+                        case '3d': urgencyMultiplier = 1.3; break;
+                        case '7d': urgencyMultiplier = 1.1; break;
+                        case '14d': urgencyMultiplier = 1; break;
+                    }
+                    const wordCountNum = parseInt(wordCount);
+                    const wordCountMultiplier = wordCountNum / 1000;
+                    const calculatedPrice = basePrice * urgencyMultiplier * wordCountMultiplier;
+                    $('#price-amount').text('$' + calculatedPrice.toFixed(2));
+                    const calculatorData = { taskType, urgency, wordCount };
+                    localStorage.setItem('priceCalculatorData', JSON.stringify(calculatorData));
+                }
+            }
+
+            // Load saved calculator data
+            const savedCalculatorData = localStorage.getItem('priceCalculatorData');
+            if (savedCalculatorData) {
+                try {
+                    const data = JSON.parse(savedCalculatorData);
+                    $('#task-type').val(data.taskType);
+                    $('#urgency').val(data.urgency);
+                    $('#word-count').val(data.wordCount);
+                    calculatePrice();
+                } catch (e) {
+                    console.error('Error loading saved calculator data:', e);
+                }
+            }
+            
+            $('#task-type, #urgency, #word-count').change(calculatePrice);
+            $('#get-quote-btn').click(function() {
+                if ($('#task-type').val() && $('#urgency').val() && $('#word-count').val()) {
+                    alert('This is a prototype. In the full version, you would receive a detailed quote via email.');
+                } else {
+                    alert('Please complete all fields to get a quote.');
+                }
+            });
+
+            // Live Chat Widget functionality
+            $('#chat-widget').click(function() {
+                $('#chat-popup').toggle();
+            });
+            $('#close-chat').click(function() {
+                $('#chat-popup').hide();
+            });
+            $('#send-chat').click(function() {
+                sendChatMessage();
+            });
+            $('#chat-input').keypress(function(e) {
+                if (e.which === 13) {
+                    sendChatMessage();
+                    return false;
+                }
+            });
+
+            // Helper: call the LiveChatAI Magic Loop
+            async function runLiveChatLoop(sessionId, message) {
+                const response = await fetch(
+                    'https://magicloops.dev/api/loop/b345a847-d399-40e1-ae3a-5e6ed381821d/run',
+                    {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ sessionId, message })
+                    }
+                );
+                const json = await response.json();
+                return json.reply;
+            }
+
+            function sendChatMessage() {
+                const message = $('#chat-input').val().trim();
+                if (message) {
+                    // Add user message
+                    $('#chat-messages').append(`
+                        <div class="mb-3 text-end">
+                            <div class="bg-primary text-white p-3 rounded-3 d-inline-block">
+                                <p class="mb-0">${message}</p>
+                            </div>
+                        </div>
+                    `);
+
+                    // Clear input
+                    $('#chat-input').val('');
+                    // Scroll to bottom
+                    $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+
+                    // Call the LiveChatAI loop for a real reply
+                    (async () => {
+                        try {
+                            const sessionId = localStorage.getItem('chatSessionId') 
+                                || ('chat_' + Date.now());
+                            if (!localStorage.getItem('chatSessionId')) {
+                                localStorage.setItem('chatSessionId', sessionId);
+                            }
+                            const reply = await runLiveChatLoop(sessionId, message);
+                            $('#chat-messages').append(`
+                                <div class="mb-3">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="bg-primary text-white rounded-circle p-1 me-2">
+                                            <i class="fas fa-user-nurse"></i>
+                                        </div>
+                                        <span class="small fw-bold">Nurse Amy</span>
+                                    </div>
+                                    <div class="bg-light p-3 rounded-3">
+                                        <p class="mb-0">${reply}</p>
+                                    </div>
+                                </div>
+                            `);
+                            $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+                        } catch (err) {
+                            console.error('LiveChatAI error', err);
+                        }
+                    })();
+                }
+            }
+
+            // Upload button click
+            $('#upload-btn').click(function() {
+                $('#uploadModal').modal('show');
+            });
+
+            // Upload form submission
+            $('#submit-upload').click(function() {
+                const assignmentType = $('#assignment-type').val();
+                const subjectArea = $('#subject-area').val();
+                const deadline = $('#deadline').val();
+                const instructions = $('#instructions').val();
+                const agreeTerms = $('#agree-terms').prop('checked');
+
+                if (assignmentType && subjectArea && deadline && instructions && agreeTerms) {
+                    $('#upload-result').removeClass('d-none alert-success alert-danger').addClass('alert-info').html('<div class="loading-spinner mb-3"></div><p class="text-center mb-0">Processing your submission...</p>');
+                    const formData = { assignmentType, subjectArea, deadline, instructions };
+                    localStorage.setItem('uploadFormData', JSON.stringify(formData));
+                    setTimeout(function() {
+                        $('#upload-result').removeClass('alert-info').addClass('alert-success').html('<i class="fas fa-check-circle me-2"></i> Your assignment has been submitted successfully! We will contact you shortly with next steps.');
+                    }, 2000);
+                } else {
+                    $('#upload-result').removeClass('d-none alert-info alert-success').addClass('alert-danger').html('<i class="fas fa-exclamation-triangle me-2"></i> Please complete all required fields and agree to the terms of service.');
+                }
+            });
+
+            // Load saved upload form data
+            const savedUploadData = localStorage.getItem('uploadFormData');
+            if (savedUploadData) {
+                try {
+                    const data = JSON.parse(savedUploadData);
+                    $('#assignment-type').val(data.assignmentType);
+                    $('#subject-area').val(data.subjectArea);
+                    $('#deadline').val(data.deadline);
+                    $('#instructions').val(data.instructions);
+                } catch (e) {
+                    console.error('Error loading saved upload data:', e);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
